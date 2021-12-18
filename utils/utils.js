@@ -22,10 +22,3 @@ module.exports = class ReadFilesUtils {
         return this.inputAsStrings.map(str => Number(str));
     }
 }
-
-
-
-// module.exports.getStringArrayFromInput = getStringArrayFromInput;
-// module.exports.getNumArrayFromInput = getNumArrayFromInput;
-// module.exports.flattenArray = flattenArray;
-    
