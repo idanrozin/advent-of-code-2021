@@ -1,3 +1,5 @@
+/* https://adventofcode.com/2021/day/1 */
+
 const ReadFilesUtils = require('../utils/utils.js');
 
 const nums = new ReadFilesUtils(__dirname).inputAsNumbers;
