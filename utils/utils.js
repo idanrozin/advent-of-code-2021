@@ -15,7 +15,7 @@ module.exports = class ReadFilesUtils {
     }
     
     get inputAsStrings () {
-        return this._readInput(this.filepath).trim().replace(/\n$/, "").split(/\r?\n/)
+        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/)
     }
 
     get inputAsNumbers () {
