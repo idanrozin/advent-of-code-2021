@@ -9,10 +9,10 @@ const arrangeLinesData = (inputs) => {
     inputs.forEach((el, i) => {
         const points = el.replace('->',',').split(',').map(Number)
             allLines[i] = {
-            x1: Number(points[0]),
-            y1: Number(points[1]),
-            x2: Number(points[2]),
-            y2: Number(points[3]),
+            x1: points[0],
+            y1: points[1],
+            x2: points[2],
+            y2: points[3],
         };
     });
     return allLines;
