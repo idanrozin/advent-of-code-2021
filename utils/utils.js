@@ -10,7 +10,7 @@ module.exports = class ReadFilesUtils {
         try {
             return fs.readFileSync(this.filepath, 'utf8');
         } catch (error) {
-            console.error(error);
+            throw error;
         }
     }
     
