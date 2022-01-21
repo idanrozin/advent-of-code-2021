@@ -10,15 +10,19 @@ module.exports = class ReadFilesUtils {
         try {
             return fs.readFileSync(this.filepath, 'utf8');
         } catch (error) {
-            console.error(error);
+            throw error;
         }
     }
     
+    get rawInput () {
+        return this._readInput();
+    }
+
     get inputAsStrings () {
-        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/)
+        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/);
     }
 
     get inputAsNumbers () {
-        return this.inputAsStrings.map(str => Number(str));
+        return this.inputAsStrings.map(Number);
     }
 }
