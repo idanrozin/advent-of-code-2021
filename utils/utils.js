@@ -14,11 +14,15 @@ module.exports = class ReadFilesUtils {
         }
     }
     
+    get rawInput () {
+        return this._readInput();
+    }
+
     get inputAsStrings () {
-        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/)
+        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/);
     }
 
     get inputAsNumbers () {
-        return this.inputAsStrings.map(str => Number(str));
+        return this.inputAsStrings.map(Number);
     }
 }
