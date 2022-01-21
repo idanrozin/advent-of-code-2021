@@ -2,8 +2,9 @@
 
 const ReadFilesUtils = require('../utils/utils.js');
 
-const inputs = new ReadFilesUtils(__dirname).inputAsStrings;
-
+const inputs = new ReadFilesUtils(__dirname, ).inputAsStrings;
+const filterLines = ({ x1, x2, y1, y2 }) => x1 === x2 || y1 === y2;
+const filterMapEntries = (map, greaterThanNum) => Array.from(map.values()).filter(n => n > greaterThanNum);
 const arrangeLinesData = (inputs) => {
     const allLines = {}
     inputs.forEach((el, i) => {
@@ -20,7 +21,7 @@ const arrangeLinesData = (inputs) => {
 
 const getLines = (inputs) => {
     const allLines = arrangeLinesData(inputs);
-    const onlyHorizontalAndVerticalLines = Object.values(allLines).filter(({ x1, x2, y1, y2 }) => x1 === x2 || y1 === y2);
+    const onlyHorizontalAndVerticalLines = Object.values(allLines).filter(filterLines);
     const linesMap = new Map();
     
     for (const line of onlyHorizontalAndVerticalLines) {
@@ -39,7 +40,53 @@ const getLines = (inputs) => {
         }
     }
     
-    return Array.from(linesMap.values()).filter(n => n > 1);
+    return filterMapEntries(linesMap, 1);
+}
+
+const getDiagonalLines = (inputs) => {
+    const allLines = arrangeLinesData(inputs);
+    
+    const onlyDiagonalLines = Object.values(allLines);
+
+    const buildKey = (x, y) => `${x}-${y}`;
+
+    const linesMap = new Map();
+
+    const insertToMap = (key) => {
+        if (linesMap.has(key)) {
+            linesMap.set(key, linesMap.get(key) + 1);
+        } else {
+            linesMap.set(key, 1);
+        }
+    };
+   
+    for (const line of onlyDiagonalLines) {
+        let { x1, x2, y1, y2 } = line;
+        insertToMap(buildKey(x1, y1));
+
+        if (x1 !== x2 && y1 !== y2) {
+            while (x1 !== x2) {
+                insertToMap(buildKey(
+                    x1 < x2 ? ++x1: --x1, y1 < y2 ? ++y1: --y1
+                ));            
+            }
+        } else if (x1 === x2) {            
+            while (y1 !== y2) {
+                insertToMap(buildKey(
+                    x1, y1 < y2 ? ++y1: --y1
+                ));            
+            }
+        } else if (y1 === y2) {
+            while (x1 !== x2) {
+                insertToMap(buildKey(
+                    x1 < x2 ? ++x1: --x1, y1
+                ));            
+            }
+        }
+    }
+    
+    return filterMapEntries(linesMap, 1);
 }
 
 console.log(`overlapping lines: ${getLines(inputs).length}`)
+console.log(`overlapping lines including diagonal: ${getDiagonalLines(inputs).length}`)
