@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path')
 
-module.exports = class ReadFilesUtils {
+class ReadFilesUtils {
     constructor(dir, filename = 'input.txt') {
         this.filepath = path.join(dir, filename);
     }
@@ -25,4 +25,19 @@ module.exports = class ReadFilesUtils {
     get inputAsNumbers () {
         return this.inputAsStrings.map(Number);
     }
+}
+
+class Common {
+    static sum (previousValue, currentValue) { 
+        return previousValue + currentValue; 
+    }
+    
+    static sumReduce (array) { 
+        return array.reduce(Common.sum, 0);
+    };
+}
+
+module.exports =  {
+    ReadFilesUtils,
+    Common
 }

@@ -1,6 +1,6 @@
 /* https://adventofcode.com/2021/day/5 */
 
-const ReadFilesUtils = require('../utils/utils.js');
+const { ReadFilesUtils } = require('../utils/utils.js');
 
 const inputs = new ReadFilesUtils(__dirname, ).inputAsStrings;
 const filterLines = ({ x1, x2, y1, y2 }) => x1 === x2 || y1 === y2;

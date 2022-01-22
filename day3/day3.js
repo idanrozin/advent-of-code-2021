@@ -1,6 +1,6 @@
 /* https://adventofcode.com/2021/day/3 */
 
-const ReadFilesUtils = require('../utils/utils.js');
+const { ReadFilesUtils } = require('../utils/utils.js');
 
 const inputs = new ReadFilesUtils(__dirname).inputAsStrings;
 
