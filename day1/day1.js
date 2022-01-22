@@ -1,6 +1,6 @@
 /* https://adventofcode.com/2021/day/1 */
 
-const ReadFilesUtils = require('../utils/utils.js');
+const { ReadFilesUtils, Common } = require('../utils/utils.js');
 
 const nums = new ReadFilesUtils(__dirname).inputAsNumbers;
 
@@ -23,7 +23,7 @@ const sumThrees = (numbers) => {
 
     for (let i = 0; i < numbers.length - 2; i++) {
         const subArray = numbers.slice(i, i + 3);
-        threesSumArray.push(subArray.reduce((acc, curr) => acc + curr, 0));
+        threesSumArray.push(Common.sumReduce(subArray));
     }
 
     return threesSumArray;
