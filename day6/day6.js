@@ -2,7 +2,7 @@
 
 const { ReadFilesUtils, Common } = require('../utils/utils.js');
 
-const inputs = new ReadFilesUtils(__dirname).rawInput.split(",").map(Number);
+const inputs = new ReadFilesUtils(__dirname).inputAsNumbers;
 
 const countLanternFish = (inputs) => {
     const countZeros = (numArr) => numArr.filter(n => n === 0).length;

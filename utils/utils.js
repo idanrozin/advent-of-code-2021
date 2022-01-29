@@ -19,7 +19,12 @@ class ReadFilesUtils {
     }
 
     get inputAsStrings () {
-        return this._readInput().trim().replace(/\n$/, "").split(/\r?\n/);
+        const _rawInput = this._readInput()
+        if (_rawInput.includes(',')) {
+            return _rawInput.split(",")
+        } else {
+            return _rawInput.trim().replace(/\n$/, "").split(/\r?\n/);
+        }
     }
 
     get inputAsNumbers () {
